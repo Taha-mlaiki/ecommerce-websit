@@ -158,7 +158,7 @@ const ProductsForm = ({
           />
         ) : imagesUrl.length > 0 ? (
           imagesUrl.map((ele) => (
-            <div className=" group relative rounded-md w-full h-80 md:h-56">
+            <div key={ele} className=" group relative rounded-md w-full h-80 md:h-56">
               <Image
                 src={ele}
                 fill

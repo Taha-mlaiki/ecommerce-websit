@@ -20,7 +20,7 @@ const settingSchema = z.object({
   name: z.string().min(3)
 })
 
-const settingsForm = ({ storeData }: { storeData: Store }) => {
+const SettingsForm = ({ storeData }: { storeData: Store }) => {
   const [loading,setLoading] = useState(false)
   const router = useRouter()
   const form = useForm<z.infer<typeof settingSchema>>({
@@ -75,4 +75,4 @@ const settingsForm = ({ storeData }: { storeData: Store }) => {
   );
 };
 
-export default settingsForm;
+export default SettingsForm;

@@ -36,7 +36,7 @@ const NavActions = () => {
       toast.success("payment completed")
       removeAll()
     }
-  },[])
+  },[removeAll,searchParams])
 
   if(ismounted === false){
     return null

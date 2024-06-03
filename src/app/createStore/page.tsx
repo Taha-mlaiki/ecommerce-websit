@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import ModalProvider from '@/providers/ModalProvider'
 import "../globals.css"
 
-const page = () => {
+const Page = () => {
   const isOpen = useStoreModal((state)=> state.isOpen)
   const onOpen = useStoreModal((state)=> state.onOpen)
 
@@ -13,7 +13,7 @@ const page = () => {
       onOpen();
     }
   },[isOpen,onOpen])
-  
+
   return (
     <div>
       <ModalProvider />
@@ -21,4 +21,5 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
+

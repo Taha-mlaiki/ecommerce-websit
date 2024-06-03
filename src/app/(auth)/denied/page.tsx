@@ -9,7 +9,7 @@ const pages = () => {
           <Image className='-mt-20' src="/403.svg" width={600} height={600} alt='404 page' />
           <div className='text-center'>
             <h1 className="text-5xl font-bold mb-4">We are sorry...</h1>
-              <p>The page you're trying to access has restricted access.</p>
+              <p>The page you&apos;re trying to access has restricted access.</p>
               <p>Please refer to your system administrator</p>
           </div>
         <Button className='mt-10'>

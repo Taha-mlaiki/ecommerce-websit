@@ -11,7 +11,7 @@ import { Pencil } from "lucide-react";
 import DeleteAlert from "../[productId]/_components/DeleteAlert";
 import { useParams, useRouter } from "next/navigation";
 
-const cellActions = ({ id }: { id: string | unknown }) => {
+const CellActions = ({ id }: { id: string | unknown }) => {
 
     const router = useRouter()
     const params = useParams()
@@ -36,4 +36,4 @@ const cellActions = ({ id }: { id: string | unknown }) => {
   );
 };
 
-export default cellActions;
+export default CellActions;

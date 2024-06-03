@@ -22,7 +22,7 @@ const page = () => {
         </CardContent>
         <CardFooter className="flex-col gap-3">
           <LoginProviders/>
-          <Link href="/register" className="text-sm font-semibld hover:underline">Don't have an account ?</Link>
+          <Link href="/register" className="text-sm font-semibld hover:underline">Don&apos;t have an account ?</Link>
         </CardFooter>
       </Card>
     </div>
