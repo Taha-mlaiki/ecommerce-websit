@@ -1,0 +1,183 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(uuid()) @map("_id")
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  role          String?   @default("user")
+  accounts      Account[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Store {
+  id         String      @id @default(uuid()) @map("_id")
+  name       String      @unique
+  billboards Billboard[]
+  Categories Category[]
+  sizes      Size[]
+  colors     Color[]
+  products   Product[]
+  orders     Order[]
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+}
+
+model Billboard {
+  id        String @id @default(uuid()) @map("_id")
+  storeName String
+  store     Store  @relation(references: [name], fields: [storeName], onDelete: Cascade)
+
+  label      String
+  imageUrl   String
+  billboards Category[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+
+  @@unique([label])
+}
+
+model Category {
+  id             String    @id @default(uuid()) @map("_id")
+  name           String
+  //relations
+  storeName      String
+  store          Store     @relation(fields: [storeName], references: [name], onDelete: Cascade)
+  billboardLabel String
+  billboard      Billboard @relation(fields: [billboardLabel], references: [label])
+  products       Product[]
+  // Date 
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+
+model Size {
+  id        String    @id @default(uuid()) @map("_id")
+  name      String
+  value     String
+  // relations
+  storeName String
+  store     Store     @relation(references: [name], fields: [storeName], onDelete: Cascade)
+  Product   Product[]
+  // Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Color {
+  id        String    @id @default(uuid()) @map("_id")
+  name      String
+  value     String
+  // relations
+  storeName String
+  store     Store     @relation(references: [name], fields: [storeName], onDelete: Cascade)
+  products  Product[]
+  // Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Product {
+  id         String      @id @default(uuid()) @map("_id")
+  name       String
+  price      Int
+  isFeatured Boolean     @default(false)
+  isArchived Boolean     @default(false)
+  images     String[]
+  //relations
+  storeName  String
+  store      Store       @relation(fields: [storeName], references: [name], onDelete: Cascade)
+  categoryId String
+  category   Category    @relation(fields: [categoryId], references: [id],onDelete:Cascade)
+  sizeId     String
+  size       Size        @relation(fields: [sizeId], references: [id],onDelete:Cascade)
+  colorId    String
+  color      Color       @relation(fields: [colorId], references: [id],onDelete:Cascade)
+  orderItems OrderItem[]
+  // Date
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+}
+
+model Order {
+  id         String      @id @default(uuid()) @map("_id")
+  isPaid     Boolean
+  phone      String?
+  address    String?
+  // relations
+  storeName  String
+  store      Store       @relation(fields: [storeName], references: [name])
+  orderItems OrderItem[]
+  // Date
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+}
+
+model OrderItem {
+  id        String   @id @default(uuid()) @map("_id")
+  //relations
+  orderId   String
+  order     Order    @relation(fields: [orderId], references: [id])
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+  // Date
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Account {
+  id                String  @id @default(uuid()) @map("_id")
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.String
+  access_token      String? @db.String
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.String
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model VerificationToken {
+  id      String   @id @default(uuid()) @map("_id")
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+}
+
+model ResetPassword {
+  id      String   @id @default(uuid()) @map("_id")
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+}
