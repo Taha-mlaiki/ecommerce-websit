@@ -4,8 +4,8 @@ import { ColumnDef } from "@tanstack/react-table";
 
 export type OrderColumns = {
   id: string;
-  phone:string,
-  address:string,
+  phone:string | null,
+  address:string | null,
   isPaid:boolean,
   totalPrice:string,
   products:string,
