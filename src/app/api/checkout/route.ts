@@ -8,14 +8,6 @@ export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!,{
     typescript:true
 })
 
-const corsHeaders = {
-    "Access-Control-Allow-Origin":"*",
-    "Access-Control-Allow-Methods":"GET,POST,PUT,DELETE,OPTIONS",
-    "Access-Control-Allow-Headers":"Content-Type, Authorization",
-}
-export async function OPTIONS(){
-    return NextResponse.json({},{headers:corsHeaders})
-}
 export async function POST(req:NextRequest){
     const reqBody = await req.json()
     const {storeName,productIds} = reqBody
@@ -73,9 +65,7 @@ export async function POST(req:NextRequest){
                 orderId: order.id
             }
         })
-        return NextResponse.json({url:session.url},{
-            headers:corsHeaders
-        })
+        return NextResponse.json({url:session.url})
     } catch (error) {
         return NextResponse.json({"Strip Error":error})
     }
