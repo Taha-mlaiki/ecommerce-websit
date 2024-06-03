@@ -31,7 +31,7 @@ const VerificationForm = () => {
         setLoading(false);
       }
     })();
-  },[token]);
+  },[token,searchParams]);
 
   return (
     <div className="py-4 flex items-center flex-col gap-5 justify-center">

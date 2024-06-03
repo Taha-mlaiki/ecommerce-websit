@@ -1,7 +1,7 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ResetPwdForm from "../_components/resetPassword/ResetPwdForm";
 
-const page = () => {
+const Page = () => {
   return (
     <div className="w-full max-w-md">
       <ResetPwdForm />
@@ -9,4 +9,14 @@ const page = () => {
   );
 };
 
-export default page;
+
+const LoginPageWithSuspense = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Page />
+    </Suspense>
+  );
+};
+
+export default LoginPageWithSuspense;
+

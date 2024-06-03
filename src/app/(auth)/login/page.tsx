@@ -8,9 +8,10 @@ import {
 import LoginForm from "../_components/LoginForm"
 import LoginProviders from "../_components/LoginProviders"
 import Link from "next/link"
+import { Suspense } from "react"
 
 
-const page = () => {
+const Page = () => {
   return (
     <div className=" w-full max-w-md mx-auto">
       <Card>
@@ -29,4 +30,12 @@ const page = () => {
   )
 }
 
-export default page
+const LoginPageWithSuspense = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Page />
+    </Suspense>
+  );
+};
+
+export default LoginPageWithSuspense;

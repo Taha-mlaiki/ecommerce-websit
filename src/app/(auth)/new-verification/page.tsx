@@ -1,8 +1,9 @@
 import {Card , CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import VerificationForm from "../_components/VerificationForm"
+import { Suspense } from "react";
 
 
-const page = () => {
+const Page = () => {
   return (
     <div className="w-full max-w-md">
       <Card>
@@ -17,4 +18,12 @@ const page = () => {
   )
 }
 
-export default page
+const LoginPageWithSuspense = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Page />
+    </Suspense>
+  );
+};
+
+export default LoginPageWithSuspense;
