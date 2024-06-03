@@ -43,12 +43,6 @@ const UserMenu = async() => {
                     </Button>       
                 </Link>
             }
-            <Link href="/">
-                <Button className='w-full gap-2' variant="outline">
-                    <Settings size={18} />
-                    Settings
-                </Button>
-            </Link>
             <form action={async()=>{
                 "use server"
                 await signOut()
