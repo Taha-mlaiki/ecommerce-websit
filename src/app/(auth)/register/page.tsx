@@ -12,7 +12,7 @@ import Link from "next/link"
 
 const page = () => {
   return (
-    <div className="max-w-md mx-auto">
+    <div className="max-w-md w-full mx-auto">
       <Card>
         <CardHeader>
           <CardTitle className="text-center text-3xl font-bold mb-10">Register🔐</CardTitle>
