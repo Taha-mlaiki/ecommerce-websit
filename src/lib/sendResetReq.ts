@@ -9,7 +9,7 @@ export const sendPwdResetEmail = async(email:string,token:string)=>{
         subject:"Reset your Password",
         html:`<div>
         Reset Password
-        <a href=http://localhost:3000/resetPassword?token=${token}>here</a>
+        <a href=${process.env.STORE_URL}/resetPassword?token=${token}>here</a>
         to reset password
         </div>`,
     })

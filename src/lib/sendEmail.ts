@@ -9,7 +9,7 @@ export const sendEmailTo = async(email:string,token:string)=>{
         subject:"Confirm your Email",
         html:`<div>
         Email Verification
-        <a href=http://localhost:3000/new-verification?token=${token}>here</a>
+        <a href=${process.env.STORE_URL}/new-verification?token=${token}>here</a>
         to Confirm email
         </div>`,
     })
