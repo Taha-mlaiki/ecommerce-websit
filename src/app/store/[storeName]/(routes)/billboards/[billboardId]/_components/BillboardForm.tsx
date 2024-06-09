@@ -33,7 +33,7 @@ const billboardSchema = z.object({
 const BillboardForm = ({
   billboardData,
 }: {
-  billboardData: Billboard | null;
+  billboardData: Billboard;
 }) => {
   const params = useParams()
   const [loading, setLoading] = useState(false);

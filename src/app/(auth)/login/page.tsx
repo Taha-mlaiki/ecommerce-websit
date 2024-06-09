@@ -13,8 +13,8 @@ import { Suspense } from "react"
 
 const Page = () => {
   return (
-    <div className=" w-full max-w-md mx-auto">
-      <Card>
+    <div className=" w-full  max-w-md mx-auto">
+      <Card className="border-none sm:border shadow-none sm:shadow-lg">
         <CardHeader>
           <CardTitle className="text-center text-3xl font-bold mb-7">Login🔐</CardTitle>
         </CardHeader>

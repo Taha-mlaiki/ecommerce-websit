@@ -12,7 +12,7 @@ const page = async({params}:{params:{billboardId:string,storeName:string}}) => {
   
   return (
     <Container>
-      <BillboardForm billboardData={billboard} />
+      <BillboardForm billboardData={billboard!} />
     </Container>
   )
 }

@@ -13,7 +13,7 @@ import Link from "next/link"
 const page = () => {
   return (
     <div className="max-w-md w-full mx-auto">
-      <Card>
+      <Card className="border-none sm:border shadow-none sm:shadow-lg">
         <CardHeader>
           <CardTitle className="text-center text-3xl font-bold mb-10">Register🔐</CardTitle>
         </CardHeader>

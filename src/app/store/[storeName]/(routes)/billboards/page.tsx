@@ -23,7 +23,7 @@ const page = async ({ params }: { params: { storeName: string } }) => {
 
   return (
     <Container className="mt-10">
-      <BillboardClient billboards={formattedBillboards} />
+      <BillboardClient billboards={formattedBillboards!} />
     </Container>
   );
 };
